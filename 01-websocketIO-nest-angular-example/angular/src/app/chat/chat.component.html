@@ -1,0 +1,7 @@
+<p>chat works!</p>
+
+<ol>
+  <li *ngFor="let mes of messages">{{ mes.type }} : {{ mes.value }}</li>
+</ol>
+
+<input type="text" [(ngModel)]="message" (keyup.enter)="send()" autofocus />

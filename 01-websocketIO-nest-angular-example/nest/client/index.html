@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style></style>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <h1>Mini-math</h1>
+
+    <div class="message-box">
+      <ul id="list-of-messages"></ul>
+    </div>
+
+    <form name="output" onsubmit="sendMessage(event)">
+      <input id="outputText" autocomplete="off" /><button>Send</button>
+    </form>
+
+    <script>
+      const socket = io();
+
+      const listOfMessage = document.getElementById('list-of-messages');
+      const sendMessageInput = document.forms.output.elements.outputText;
+
+      sendMessageInput.focus();
+
+      socket.on('client-message', function (msg) {
+        addMessage('client-message', msg);
+      });
+
+      socket.on('server-message', function (msg) {
+        addMessage('server-message', msg);
+      });
+
+      function addMessage(msgType, message) {
+        const li = document.createElement('li');
+        li.innerHTML = msgType + ' : ' + message;
+        listOfMessage.append(li);
+      }
+
+      function sendMessage(event) {
+        event.preventDefault();
+        mes = sendMessageInput.value;
+        if (!mes) {
+          return;
+        }
+        socket.emit('client-message', mes);
+        sendMessageInput.value = '';
+        return false;
+      }
+    </script>
+  </body>
+</html>
