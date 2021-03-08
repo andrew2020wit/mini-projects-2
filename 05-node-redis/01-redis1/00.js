@@ -1,0 +1,14 @@
+const redis = require("redis");
+const client = redis.createClient();
+
+client.on("error", function (error) {
+  console.error(error);
+});
+
+client.set("key", "value", redis.print);
+client.get("key", redis.print);
+
+client.set("key2", "value", redis.print);
+client.get("key2", (err, reply) => {
+  console.log(reply);
+});

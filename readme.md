@@ -7,3 +7,5 @@
 ## 03-node-rabbitmq
 
 ## 04-node-kafka
+
+## 05-node-redis
