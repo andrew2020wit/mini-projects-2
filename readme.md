@@ -9,3 +9,7 @@
 ## 04-node-kafka
 
 ## 05-node-redis
+
+## 06-node-misc/01-node-launcher-child_process
+
+nodejs runs .bat-file (in Windows)
